@@ -1,0 +1,31 @@
+opam-version: "1.2"
+name: "modelica_ml"
+version: "0.3.0"
+maintainer: "\"Christoph Höger <christoph.hoeger@tu-berlin.de>\""
+authors: [ "\"Christoph Höger <christoph.hoeger@tu-berlin.de>\"" ]
+license: "BSD-3-clause"
+homepage: "http://github.com/choeger/modelica.ml"
+build: [
+  ["ocaml" "setup.ml" "-configure" "--prefix" prefix]
+  ["ocaml" "setup.ml" "-build"]
+]
+install: ["ocaml" "setup.ml" "-install"]
+remove: [
+  ["ocamlfind" "remove" "modelica_ml"]
+]
+build-doc: [ "ocaml" "setup.ml" "-doc" ]
+depends: [
+  "batteries"
+  "menhir"
+  "ocamlfind"
+  "ocamlgraph"
+  "ppx_deriving" {>= "3.0" & < "4.0"}
+  "ppx_deriving_yojson" {>= "2.4"}
+  "ppx_import"
+  "ppx_monadic"
+  "sedlex"
+]
+depopts: [
+  "ounit"
+]
+ocaml-version: [ >= "4.02.3" ]

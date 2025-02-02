@@ -1,0 +1,16 @@
+modelica.ml-api.docdir
+modelica.ml-api.odocl
+modelica_frontend_tests.native
+setup.data
+setup.log
+*~
+*.annot
+*.cmo
+*.cma
+*.cmi
+*.a
+*.o
+*.cmx
+*.cmxs
+*.cmxa
+_build/

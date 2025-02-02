@@ -1,0 +1,24 @@
+# OASIS_START
+# DO NOT EDIT (digest: 429d1e358beae1358575d95ef53b007b)
+Modelica_parser
+Modelica_lexer
+Pprint_modelica
+Syntax
+Syntax_fragments
+FileSystem
+Stats
+Modlib
+Utils
+Report
+Deps
+ModlibInter
+ModlibCompress
+ModlibTrans
+ModlibInterDeps
+ModlibLookup
+ModlibNormSig
+ModlibNormalized
+ModlibNormLib
+ModlibNormImpl
+Generated_parser
+# OASIS_STOP

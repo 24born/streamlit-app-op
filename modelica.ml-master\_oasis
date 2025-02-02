@@ -1,0 +1,101 @@
+OASISFormat: 0.4
+Name:        modelica_ml
+Version:     0.3.0
+Synopsis:    Modelica abstract syntax and parser
+Authors:     Christoph Höger <christoph.hoeger@tu-berlin.de>
+License:     BSD-3-clause
+Plugins:     META (0.4), DevFiles (0.4)
+Maintainers: "Christoph Höger <christoph.hoeger@tu-berlin.de>"
+Authors:     "Christoph Höger <christoph.hoeger@tu-berlin.de>"
+Homepage:    http://github.com/choeger/modelica.ml
+OCamlVersion:  >= 4.02.3
+Description: Modelica_ml is a Modelica frontend implemented in OCaml.
+             It is written with compilation in mind, but should also be
+             useful for other applications.
+             Modelica_ml currently supports abstract syntax, parsing,
+             pretty printing and a form of lookup analysis
+             (class normalization). Patches welcome!
+
+Library modelica_ml
+  Path:           src
+  CompiledObject: best
+  BuildTools:     ocamlbuild
+  BuildDepends:   batteries, menhirLib, sedlex, yojson,
+                  ppx_deriving.show, ppx_deriving.eq, ppx_deriving.ord, ppx_deriving_morphism (>= 0.3), re, re.glob,
+                  compiler-libs.common, ocamlgraph, ppx_deriving_yojson, ppx_monadic, ppx_import, ppx_sexp_conv, sexplib	
+  Modules:        Modelica_parser, Modelica_lexer, Pprint_modelica,
+                  Syntax, Syntax_fragments, FileSystem,
+                  Stats, Modlib, Utils, Report, Deps,
+                  ModlibInter, ModlibCompress, ModlibTrans,
+                  ModlibInterDeps, ModlibLookup, ModlibNormSig, ModlibNormalized, ModlibNormLib, ModlibNormImpl
+
+  InternalModules: Generated_parser
+  
+Test "Modelica Parser Tests"
+  Command: $modelica_frontend_tests
+
+Executable modelica_frontend_tests
+  Path:       test
+  CompiledObject: best
+  Build$: flag(tests)  
+  BuildDepends: modelica_ml, oUnit, sexplib
+  BuildTools: ocamlbuild
+  MainIs:     modelica_frontend_tests.ml
+
+Executable modml_clc
+  Path:    examples
+  CompiledObject: best
+  BuildDepends: modelica_ml
+  BuildTools: ocamlbuild
+  MainIs:     modml_clc.ml
+
+Executable modlibc
+  Path:    tools.src
+  CompiledObject: best
+  BuildDepends: modelica_ml
+  BuildTools: ocamlbuild
+  MainIs:     modlibc.ml
+
+Executable modlibdeps
+  Path:    tools.src
+  CompiledObject: best
+  BuildDepends: modelica_ml
+  BuildTools: ocamlbuild
+  MainIs:     modlibdeps.ml
+
+Executable modml_parseall
+  Path:    examples
+  CompiledObject: best
+  BuildDepends: modelica_ml, ANSITerminal
+  BuildTools: ocamlbuild
+  MainIs:     parse_all.ml
+
+Executable dump_cl
+  Path:    examples
+  CompiledObject: best
+  BuildDepends: modelica_ml
+  BuildTools: ocamlbuild
+  MainIs:     dump_cl.ml
+
+Executable modml_cl
+  Path:    examples
+  CompiledObject: best
+  BuildDepends: modelica_ml
+  BuildTools: ocamlbuild
+  MainIs:     modml_cl.ml
+
+Executable modml_clread
+  Path:    examples
+  CompiledObject: best
+  BuildDepends: modelica_ml
+  BuildTools: ocamlbuild
+  MainIs:     modml_clread.ml
+
+Document "modelica.ml-api"
+  Title: API reference for modelica.ml
+  Type: ocamlbuild (0.3)
+  Install: true
+  InstallDir: $htmldir/api
+  BuildTools: ocamlbuild, ocamldoc
+  XOCamlbuildPath: ./
+  XOCamlbuildLibraries: modelica_ml
